@@ -14,6 +14,8 @@
 3. Run `npm install` to install all the application dependencies
 4. Run `ng serve` to start a development server, open your browser and navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-To run the development server on a custom development server port(eg: `http://localhost:4201`), run `ng serve --port 4201
+To run the development server on a custom development server port(eg: `http://localhost:4201`), run `ng serve --port 4201`
+
+To customize the application theme to your taste, simply open `apfem-theme.scss` located in the `src` directory and make your changes. For more details on how to them your application, visit [Theming Angular Material](https://material.angular.io/guide/theming)
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
