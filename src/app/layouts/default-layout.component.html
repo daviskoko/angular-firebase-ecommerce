@@ -1,0 +1,31 @@
+<md-sidenav-container class="apfem-container">
+  <md-sidenav #sidenav class="apfem-sidenav">
+    <apfem-side-nav></apfem-side-nav>
+  </md-sidenav>
+  <md-toolbar class="navigation header" color="primary">
+    <div class="apfem-sidenav-content">
+      <button md-button (click)="sidenav.open()" class="menu">
+        <md-icon>menu</md-icon>
+      </button>
+      <button md-button (click)="goBack()" class="back-arrow">
+        <md-icon>arrow_back</md-icon>
+      </button>
+    </div>
+    <a routerLinkActive="active" [routerLink]="['']" class="center-xs">
+      APFEM APP
+    </a>
+    <apfem-cart-counter></apfem-cart-counter>
+  </md-toolbar>
+
+  <!--Main content-->
+  <div class="content">
+    <div class="container">
+      <router-outlet></router-outlet>
+      jkjk
+    </div>
+  </div>
+  <!--/Main content-->
+
+  <apfem-footer></apfem-footer>
+
+</md-sidenav-container>
