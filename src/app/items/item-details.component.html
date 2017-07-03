@@ -1,0 +1,42 @@
+<br>
+<div><a routerLink="/items">Back to items</a></div>
+<br>
+<div class="row" *ngIf="item">
+    <div class="col-xs-12 col-sm-7 col-md-7">
+        <apfem-carousel [interval]="delay" [noWrap]="loop">
+            <apfem-slide *ngFor="let photo of item.photos" [active]="photo.active" class="img">
+                <md-card>
+                    <div md-card-image [ngStyle]="{ 'background': 'white url(' + photo.path + ')',
+                    'background-repeat': 'no-repeat','background-size': 'cover','width': 'auto','height': '60vh',
+                    'background-position': 'center center','color': '#FFF' }">
+                    </div>
+                </md-card>
+            </apfem-slide>
+        </apfem-carousel>
+    </div>
+    <div class="col-xs-12 col-sm-5 col-md-5">
+        <h3>{{item.name}}</h3>
+        <h4>{{item.price | currency:USD:true}}</h4>
+        <p><small class="old-price">{{item.old_price | currency:USD:true}}</small></p>
+        <p><small>Availability<br><b>{{item.availability}}</b></small></p><br>
+        <form (ngSubmit)="onAddToCart()" [formGroup]="cartForm">
+            <input type="hidden" formControlName="item" [(ngModel)]="item">
+            <md-select placeholder="Quantity" formControlName="quantity">
+                <md-option *ngFor="let qty of numbers" [value]="qty.value">
+                    {{ qty.display }}
+                </md-option>
+            </md-select>
+            <br><br>
+            <button md-button md-raised-button color="accent" [disabled]="!cartForm.valid">
+                <md-icon>add_shopping_cart</md-icon> ADD TO CART
+            </button>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <br><small><b>Description:</b></small>
+        <p innerHTML="{{ item.description }}"></p>
+    </div>
+</div>
+<br>

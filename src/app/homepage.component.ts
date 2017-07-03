@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Response } from '@angular/http';
 
-import { Item } from "./items";
+import { ItemService, Item } from "./items";
 
 @Component({
   selector: 'apfem-homepage',
@@ -11,6 +12,7 @@ export class HomepageComponent implements OnInit {
 
   delay: number = 5000;
   loop: boolean = false;
+  loading: boolean = false;
   items: Item[] = [];
   slides: Array<any> = [
     {link: '#', color: 'grey'},
@@ -20,9 +22,27 @@ export class HomepageComponent implements OnInit {
   ];
 
   constructor(
+    private itemService: ItemService
   ) { }
 
-  ngOnInit() {
+  // Simulate a post
+  postItems(){
+    this.itemService.storeItem().subscribe(
+      (data: Response) => console.log(data.statusText)
+    )
   }
 
+  getItems(){
+    this.loading = true;
+    this.itemService.getItems().subscribe(
+      data => {
+        this.items = data,
+        this.loading = false
+      }
+    );
+  }
+
+  ngOnInit() {
+    this.getItems();
+  }
 }

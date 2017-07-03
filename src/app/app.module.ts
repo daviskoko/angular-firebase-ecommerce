@@ -18,6 +18,8 @@ import {
   FooterComponent,
   CartCounterComponent
 } from './shared';
+import { ItemService } from "app/items/item.service";
+import { CartService } from "app/cart/cart.service";
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import {
     CarouselModule
   ],
   providers: [
+    ItemService,
+    CartService,
     {
       provide: LocationStrategy,
       useClass: PathLocationStrategy

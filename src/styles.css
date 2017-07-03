@@ -11,6 +11,13 @@ html, body, material-app, md-sidenav-container, .my-content {
     background-color: #f9f9f9;
     color: #333;
 }
+h4 {
+    color: gray;
+    margin: 5px 0px;
+}
+a {
+  text-decoration: none;
+}
 
 .content {
     display: block;
@@ -45,6 +52,11 @@ md-toolbar-row {
 
 md-sidenav {
     width: 200px;
+}
+
+.old-price {
+    color: darkred;
+    text-decoration: line-through;
 }
 
 .loader {
@@ -221,15 +233,3 @@ md-sidenav {
   height: auto !important;
 }
 /*End of carousel*/
-
-@media only screen and (min-width: 768px) {
-    .menu {
-        display: none;
-    }
-}
-
-@media only screen and (max-width: 768px) {
-    .back-arrow {
-        display: none;
-    }
-}
