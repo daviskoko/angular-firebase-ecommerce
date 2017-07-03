@@ -1,0 +1,67 @@
+<md-sidenav-container>
+  <md-sidenav #sidenav>
+    <apfem-side-nav></apfem-side-nav>
+  </md-sidenav>
+  <md-toolbar color="primary">
+    <button md-button (click)="sidenav.open()" class="menu">
+      <md-icon>menu</md-icon>
+    </button>
+    <div>&nbsp;</div>
+    <a routerLinkActive="active" [routerLink]="['']" class="brand">
+      APFEM SHOP
+    </a>
+    <apfem-cart-counter></apfem-cart-counter>
+  </md-toolbar>
+
+  <!--Home Slider-->
+  <div class="content">
+    <div class="home-slide" id="slider">
+      <apfem-carousel [interval]="delay" [noWrap]="loop">
+        <apfem-slide *ngFor="let slide of slides" [active]="slide.active">
+          <a [routerLink]="slide.link">
+            <div [ngStyle]="{'margin':'auto','width':'100%','height':'25vmax','background-color':slide.color}"> </div>
+          </a>
+        </apfem-slide>
+      </apfem-carousel>
+    </div>
+  </div>
+  <!--/Home Slider-->
+
+  <!--Items-->
+  <div class="content">
+    <div class="container">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <br>
+        <div><a routerLink="items">List all items</a></div>
+        <br>
+        <div class="row">
+          <div *ngFor="let item of items; let i = index" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <a [routerLink]="['/items', i]">
+              <md-card class="center-xs item-card">
+                <div class="item-img" [ngStyle]="{'background': 'white url(' + item.photos[0].path +')',
+                  'background-repeat': 'no-repeat','background-size': 'cover','width': 'auto','min-height': '250px',
+                  'background-position': 'center center','color': '#FFF' }"></div>
+                <md-card-content>
+                  <div>
+                    <md-card-header class="center-xs">
+                      <md-card-title>
+                        <h3>{{ item.name }}</h3>
+                        <span>{{ item.price | currency:'USD':true }}&nbsp;&nbsp;&nbsp;</span>
+                        <small class="old-price">{{item.old_price | currency:USD:true}}</small>
+                      </md-card-title>
+                    </md-card-header>
+                  </div>
+                </md-card-content>
+                <button class="end-xs" md-raised-button color="primary">Add To Cart <md-icon>add_shopping_cart</md-icon></button>
+              </md-card><br>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--/Items-->
+
+  <apfem-footer></apfem-footer>
+
+</md-sidenav-container>

@@ -10,7 +10,7 @@
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue.
 $apfem-app-primary: mat-palette($mat-pink);
-$apfem-app-accent:  mat-palette($mat-light-blue);
+$apfem-app-accent:  mat-palette($mat-pink, 800);
 
 // The warn palette is optional (defaults to red).
 $apfem-app-warn:    mat-palette($mat-red);

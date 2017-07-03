@@ -1,0 +1,24 @@
+<div *ngIf="cart" class="cart">
+  <div class="row center-xs">
+    <div class="col-xs-11 col-sm-8 col-md-6">
+      <h3>My Cart</h3>
+      <small>You have {{cart.length}} items in your basket</small>
+      <apfem-cart-item 
+        class="cart-wrapper" 
+        *ngFor="let ct of cart"
+        [cartItem]="ct">
+      </apfem-cart-item>
+      <div *ngIf="cart.length >= 1" class="row center-xs">
+        <div class="col-xs-12 col-sm-6">
+          <a md-button routerLink="/items" color="accent"><md-icon>keyboard_arrow_left</md-icon> CONTINUE SHOPPING</a>
+        </div><br><br><br>
+        <div class="col-xs-12 col-sm-6">
+          <a md-raised-button href="javascript:;" color="primary">CHECK OUT<md-icon>keyboard_arrow_right</md-icon></a>
+        </div>
+      </div>
+      <div *ngIf="cart.length < 1" class="row center-xs">
+        <a md-raised-button routerLink="/items" color="primary">SHOPPING LIST</a>
+      </div>
+    </div>
+  </div>
+</div>

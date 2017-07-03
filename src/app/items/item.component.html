@@ -1,0 +1,20 @@
+<a [routerLink]="['/items', selectedItem]">
+  <md-card class="center-xs item-card" *ngIf="item">
+    <div class="item-img" [ngStyle]="{'background': 'white url(' + item.photos[0].path +')',
+      'background-repeat': 'no-repeat','background-size': 'cover','width': 'auto','min-height': '250px',
+      'background-position': 'center center','color': '#FFF' }"></div>
+    <md-card-content>
+      <div>
+        <md-card-header class="center-xs">
+          <md-card-title>
+            <h3>{{ item.name }}</h3>
+            <span>{{ item.price | currency:'USD':true }}&nbsp;&nbsp;&nbsp;</span>
+            <small class="old-price">{{item.old_price | currency:USD:true}}</small>
+          </md-card-title>
+        </md-card-header>
+      </div>
+    </md-card-content>
+    <button class="end-xs" md-raised-button color="primary">Add To Cart <md-icon>add_shopping_cart</md-icon></button>
+  </md-card>
+</a>
+<br><br>
