@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { Item } from "./index";
+import { Item } from './index';
 
 @Component({
   selector: 'apfem-item',

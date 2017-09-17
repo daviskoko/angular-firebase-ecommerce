@@ -4,13 +4,13 @@ import { MaterialModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import {
-  ItemDetailsComponent, 
-  ItemComponent, 
-  ItemListComponent, 
+  ItemDetailsComponent,
+  ItemComponent,
+  ItemListComponent,
   ItemByCategoryComponent
 } from './index';
-import { ItemRoutingModule } from "app/items/item-routing.module";
-import { CarouselModule } from "app/shared/carousel.module";
+import { ItemRoutingModule } from 'app/items/item-routing.module';
+import { CarouselModule } from 'app/shared/carousel.module';
 
 @NgModule({
   imports: [

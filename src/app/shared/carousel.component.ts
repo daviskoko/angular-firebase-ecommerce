@@ -21,32 +21,32 @@ export enum Direction {UNKNOWN, NEXT, PREV}
   `
 })
 export class CarouselComponent implements OnDestroy {
-    @Input() public noWrap:boolean;
-    @Input() public noPause:boolean;
-    @Input() public noTransition:boolean;
+    @Input() public noWrap: boolean;
+    @Input() public noPause: boolean;
+    @Input() public noTransition: boolean;
 
-    @Input() public get interval():number {
+    @Input() public get interval(): number {
         return this._interval;
     }
 
-    public set interval(value:number) {
+    slides: Array<SlideComponent> = [];
+    currentInterval: any;
+    isPlaying: boolean;
+    destroyed = false;
+    currentSlide: SlideComponent;
+    _interval: number;
+
+    public set interval(value: number) {
         this._interval = value;
         this.restartTimer();
     }
 
-    private slides:Array<SlideComponent> = [];
-    private currentInterval:any;
-    private isPlaying:boolean;
-    private destroyed:boolean = false;
-    private currentSlide:SlideComponent;
-    private _interval:number;
-
-    public ngOnDestroy() {
+    ngOnDestroy() {
         this.destroyed = true;
     }
 
-    public select(nextSlide:SlideComponent, direction:Direction = Direction.UNKNOWN) {
-        let nextIndex = nextSlide.index;
+    select(nextSlide: SlideComponent, direction: Direction = Direction.UNKNOWN) {
+        const nextIndex = nextSlide.index;
         if (direction === Direction.UNKNOWN) {
             direction = nextIndex > this.getCurrentIndex() ? Direction.NEXT : Direction.PREV;
         }
@@ -57,7 +57,7 @@ export class CarouselComponent implements OnDestroy {
         }
     }
 
-    private goNext(slide:SlideComponent, direction:Direction) {
+    private goNext(slide: SlideComponent, direction: Direction) {
         if (this.destroyed) {
             return;
         }
@@ -76,8 +76,8 @@ export class CarouselComponent implements OnDestroy {
         this.restartTimer();
     }
 
-    private getSlideByIndex(index:number) {
-        let len = this.slides.length;
+    private getSlideByIndex(index: number) {
+        const len = this.slides.length;
         for (let i = 0; i < len; ++i) {
             if (this.slides[i].index === index) {
                 return this.slides[i];
@@ -85,12 +85,12 @@ export class CarouselComponent implements OnDestroy {
         }
     }
 
-    private getCurrentIndex() {
+    getCurrentIndex() {
         return !this.currentSlide ? 0 : this.currentSlide.index;
     }
 
-    private next() {
-        let newIndex = (this.getCurrentIndex() + 1) % this.slides.length;
+    next() {
+        const newIndex = (this.getCurrentIndex() + 1) % this.slides.length;
 
         if (newIndex === 0 && this.noWrap) {
             this.pause();
@@ -100,8 +100,8 @@ export class CarouselComponent implements OnDestroy {
         return this.select(this.getSlideByIndex(newIndex), Direction.NEXT);
     }
 
-    private prev() {
-        let newIndex = this.getCurrentIndex() - 1 < 0 ? this.slides.length - 1 : this.getCurrentIndex() - 1;
+    prev() {
+        const newIndex = this.getCurrentIndex() - 1 < 0 ? this.slides.length - 1 : this.getCurrentIndex() - 1;
 
         if (this.noWrap && newIndex === this.slides.length - 1) {
             this.pause();
@@ -111,12 +111,12 @@ export class CarouselComponent implements OnDestroy {
         return this.select(this.getSlideByIndex(newIndex), Direction.PREV);
     }
 
-    private restartTimer() {
+    restartTimer() {
         this.resetTimer();
-        let interval = +this.interval;
+        const interval = +this.interval;
         if (!isNaN(interval) && interval > 0) {
             this.currentInterval = setInterval(() => {
-                let nInterval = +this.interval;
+                const nInterval = +this.interval;
                 if (this.isPlaying && !isNaN(this.interval) && nInterval > 0 && this.slides.length) {
                     this.next();
                 } else {
@@ -126,7 +126,7 @@ export class CarouselComponent implements OnDestroy {
         }
     }
 
-    private resetTimer() {
+    resetTimer() {
         if (this.currentInterval) {
             clearInterval(this.currentInterval);
             this.currentInterval = null;
@@ -147,7 +147,7 @@ export class CarouselComponent implements OnDestroy {
         }
     }
 
-    public addSlide(slide:SlideComponent) {
+    public addSlide(slide: SlideComponent) {
         slide.index = this.slides.length;
         this.slides.push(slide);
         if (this.slides.length === 1 || slide.active) {
@@ -160,7 +160,7 @@ export class CarouselComponent implements OnDestroy {
         }
     }
 
-    public removeSlide(slide:SlideComponent) {
+    public removeSlide(slide: SlideComponent) {
         this.slides.splice(slide.index, 1);
 
         if (this.slides.length === 0) {

@@ -3,7 +3,7 @@
     <br>
     <div>List of items</div>
     <br>
-    <div class="row">
+    <div class="row" *ngIf="items">
       <apfem-item 
         *ngFor="let item of items; let i = index" 
         [item]="item" [selectedItem]="i"

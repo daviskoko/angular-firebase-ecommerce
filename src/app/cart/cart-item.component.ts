@@ -1,13 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { Item } from "app/items";
+import { Item } from 'app/items';
 
 @Component({
   selector: 'apfem-cart-item',
   template: `
     <div class="row cart-wrapper">
-      <div class="col-xs-5">
+      <div class="col-xs-5" *ngIf="cartItem">
         <div class="item-img" [ngStyle]="{'background': 'white url(' + cartItem.val.item.photos[0].path +')',
           'background-repeat': 'no-repeat','background-size': 'cover','width': 'auto','min-height': '200px',
           'background-position': 'center center','color': '#FFF' }">
@@ -15,8 +15,8 @@ import { Item } from "app/items";
       </div>
       <div class="col-xs-7 start-xs">
         <h4>{{cartItem.val.item.name}}</h4>
-        <p><small>{{cartItem.val.item.price | currency:USD:true}}</small>
-        <small class="old-price">{{cartItem.val.item.old_price | currency:USD:true}}</small></p>
+        <p><small>{{cartItem.val.item.price | currency:'USD':true}}</small>
+        <small class="old-price">{{cartItem.val.item.old_price | currency:'USD':true}}</small></p>
         <form (ngSubmit)="onUpdateCart()" [formGroup]="updateCartForm">
           <input type="hidden" formControlName="item" [(ngModel)]="cartItem.val.item">
           <md-select placeholder="Quantity" formControlName="quantity" [(ngModel)]="cartItem.val.quantity">
@@ -26,7 +26,7 @@ import { Item } from "app/items";
           </md-select>
           <br>
           <p>
-            <small>Sub-Total: {{cartItem.val.quantity * cartItem.val.item.price | currency:USD:true}}</small>
+            <small>Sub-Total: {{cartItem.val.quantity * cartItem.val.item.price | currency:'USD':true}}</small>
             &nbsp;&nbsp;&nbsp;
             <button md-button md-raised-button color="accent" [disabled]="updateCartForm.pristine">
               UPDATE CART
@@ -41,7 +41,7 @@ import { Item } from "app/items";
 })
 export class CartItemComponent implements OnInit {
 
-  @Input() cartItem: Item;
+  @Input() cartItem;
   updateCartForm: FormGroup;
   numbers = [
     {value: 1, display: 'One'},
@@ -60,7 +60,6 @@ export class CartItemComponent implements OnInit {
 
   onUpdateCart() {
     console.log(this.updateCartForm.value);
-    
   }
 
   ngOnInit() {
