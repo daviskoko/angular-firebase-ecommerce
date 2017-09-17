@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from "@angular/router";
-import { MdSnackBar } from "@angular/material";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { Router, ActivatedRoute } from '@angular/router';
+import { MdSnackBar } from '@angular/material';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { ItemService, Item } from "./index";
+import { ItemService, Item } from './index';
 import { CartService } from '../cart/cart.service';
 
 @Component({
@@ -13,12 +13,12 @@ import { CartService } from '../cart/cart.service';
 })
 export class ItemDetailsComponent implements OnInit {
 
-  loading: boolean = false;
-  delay: number = 5000;
-  loop: boolean = false;
+  loading = false;
+  delay = 5000;
+  loop = false;
   item: Item;
   cartForm: FormGroup;
-  itemIndex: number;
+  itemIndex: any;
   numbers = [
     {value: 1, display: 'One'},
     {value: 2, display: 'Two'},
@@ -39,8 +39,10 @@ export class ItemDetailsComponent implements OnInit {
     });
   }
 
-  // Get an item from the items array
-  getItem(){
+  /**
+   * Get an item from the items array using the slug parameter
+   */
+  getItem() {
     this.route.params.subscribe(
       (params: any) => {
         this.itemIndex = params['slug'];
@@ -49,9 +51,12 @@ export class ItemDetailsComponent implements OnInit {
     );
   }
 
+  /**
+   * Add item to cart(users browser - localStorage)
+   */
   onAddToCart() {
     this.loading = true;
-    if(localStorage.getItem('cart-' + this.item.slug)) {
+    if (localStorage.getItem('cart-' + this.item.slug)) {
       this.snackBar.open('Already in your cart!', 'Ok', {
         duration: 5000,
       }),
@@ -63,11 +68,6 @@ export class ItemDetailsComponent implements OnInit {
         duration: 5000,
       });
     }
-  }
-
-  // Call this function to store a new item in your DB
-  storeItems() {
-    this.itemService.storeItem();
   }
 
   ngOnInit() {

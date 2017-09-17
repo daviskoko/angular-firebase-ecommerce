@@ -1,15 +1,15 @@
-import { Injectable } from "@angular/core";
-import { Headers, Http, Response } from "@angular/http";
-import { Observable } from "rxjs/Rx";
+import { Injectable } from '@angular/core';
+import { Headers, Http, Response } from '@angular/http';
+import { Observable } from 'rxjs/Rx';
 
-import { Item, Image, Category } from "./index";
+import { Item, Image, Category } from './index';
 
 @Injectable()
 export class ItemService {
 
-  private header = new Headers({'Content-Type':'application/json'});
-  private firbaseApi = 'https://apfem-c20fc.firebaseio.com/';
-  
+  private header = new Headers({'Content-Type': 'application/json'});
+  private firbaseApi = 'https://apfem-78c34.firebaseio.com/';
+
   // Item sample data
   private items: Item[] = [
     new Item('angular-t-shirt', 'Angular T-Shirt', new Category('t-shirt', 'T-Shirts'), 120, 135, 'In Stock', 'Lorem ipsum dolor sit amet, no agam populo apeirian pri, ea eirmod scaevola voluptatibus per. No est maluisset sadipscing, duo soluta dignissim dissentiet ei, malis possim posidonium ad has. Dico error utamur an est, ex tantas expetendis sit. Convenire disputando repudiandae nam no, laudem malorum quaeque sit id.',
@@ -46,20 +46,27 @@ export class ItemService {
 
   constructor( private http: Http ) { }
 
-  // Get items from the API
-  getItems(){
+  /**
+   * Get items from the firebase API
+   */
+  getItems() {
     return this.http.get(this.firbaseApi + 'items.json')
                     .map((response: Response) => response.json() as Item[]);
   }
 
-  // Get an item by id
-  getItem(id: number){
+  /**
+   * Get an item from the items array by id
+   * @param id
+   */
+  getItem(id: number) {
     return this.items[id];
   }
 
-  // Store items to the your DB
-  storeItem() {    
-    let body = JSON.stringify(this.items);
+  /**
+   * Used to send/store items to the backend
+   */
+  storeItem() {
+    const body = JSON.stringify(this.items);
     return this.http.put(this.firbaseApi + 'items.json', body, {headers: this.header});
   }
 

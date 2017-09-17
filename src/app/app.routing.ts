@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-//Layouts
+// Layouts
 import { DefaultLayoutComponent } from './layouts/default-layout.component';
 import { SimpleLayoutComponent } from './layouts/simple-layout.component';
-import { HomepageComponent } from "app/homepage.component";
+import { HomepageComponent } from 'app/homepage.component';
 
 export const routes: Routes = [
     {

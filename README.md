@@ -1,5 +1,7 @@
 # This is an E-commerce PWA(Progressive Web Application) built with Angular 4, Angular Material and Google Firebase
 
+Live demo can be found here: (https://apfem-c20fc.firebaseapp.com/)
+
 # Requirements
 - [Angular 4+](https://angular.io)
 - [Angular CLI v1.1.0](https://github.com/angular/angular-cli)

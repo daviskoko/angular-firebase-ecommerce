@@ -16,5 +16,5 @@ export class Image {
 }
 
 export class Category {
-    constructor(public slug: string, public title: string){}
+    constructor(public slug: string, public title: string) {}
 }

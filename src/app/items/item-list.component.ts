@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ItemService, Item } from "./index";
+import { ItemService, Item } from './index';
 
 @Component({
   selector: 'apfem-item-list',
@@ -9,14 +9,17 @@ import { ItemService, Item } from "./index";
 })
 export class ItemListComponent implements OnInit {
 
-  loading: boolean = false;
+  loading = false;
   items: Item[] = [];
 
   constructor(
     private itemService: ItemService
   ) { }
 
-  getItems(){
+  /**
+   * Get the items from the service
+   */
+  getItems() {
     this.loading = true;
     this.itemService.getItems().subscribe(
       data => {
