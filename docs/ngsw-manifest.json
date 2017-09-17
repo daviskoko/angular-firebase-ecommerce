@@ -1,0 +1,18 @@
+{
+  "static": {
+    "urls": {
+      "/bg.e88a2d4544db10e6bdcf.jpg": "7741844e90b8d17e44a9e20171badb41f56d4fa9",
+      "/0.199027b778401bd939dd.chunk.js": "c07871817fd5b61f0d5a4f3131735fdfa224dffd",
+      "/1.aa7a59fc8f79e7c15bbf.chunk.js": "b7519977521206dbee28ccecd9b2981c3835e49a",
+      "/polyfills.272a0a92e0b8d1d5eab2.bundle.js": "81db6eae7b51596379221db0c6c94ff1a7a69d25",
+      "/main.7b3b5ac7102628da6d15.bundle.js": "b3d0f278808ea2cd16ef7715ae29070d56bc428e",
+      "/sw-register.c12a0e1d4fd37a7ce413.bundle.js": "13d2341442ad14e2e5a43eaa9e3feaabde4a014b",
+      "/vendor.e726a2429f090af1601d.bundle.js": "a8e8dc93b5c11194bb28be40ad84596b08d622be",
+      "/inline.4f04594155dcd0da1dd8.bundle.js": "91e0f140e81ea18237940f8d728bf8ef27efea6f",
+      "/styles.6a63a43850233e912137.bundle.css": "1b53833d05a3c711904250429bcd041dfe59846b",
+      "/assets/bg.jpg": "7741844e90b8d17e44a9e20171badb41f56d4fa9",
+      "/index.html": "468e0339cfb4382fa2e17e4deaccdceb0eaf3bc3"
+    },
+    "_generatedFromWebpack": true
+  }
+}
